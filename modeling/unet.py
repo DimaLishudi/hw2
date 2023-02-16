@@ -89,7 +89,7 @@ class UnetModel(nn.Module):
 
         self.up0 = nn.Sequential(
             nn.ConvTranspose2d(2 * hidden_size, 2 * hidden_size, 4, 4),
-            nn.GroupNorm(8, 2 * hidden_size),
+            # nn.GroupNorm(8, 2 * hidden_size),
             nn.ReLU(),
         )
 
@@ -107,7 +107,7 @@ class UnetModel(nn.Module):
 
         thro = self.to_vec(down3)
         temb = self.timestep_embedding(t)
-
+        temb = temb.view(*temb.shape, 1, 1) # FIX: broadcasting
         thro = self.up0(thro + temb)
 
         up1 = self.up1(thro, down3) + temb
