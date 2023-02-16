@@ -89,7 +89,7 @@ class UnetModel(nn.Module):
 
         self.up0 = nn.Sequential(
             nn.ConvTranspose2d(2 * hidden_size, 2 * hidden_size, 4, 4),
-            # nn.GroupNorm(8, 2 * hidden_size),
+            nn.GroupNorm(8, 2 * hidden_size),
             nn.ReLU(),
         )
 

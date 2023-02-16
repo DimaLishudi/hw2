@@ -1,2 +1,5 @@
 cifar10/*
-modeling/__pycache__/*
+data/*
+samples/*
+*__pycache__*
+.vscode/*
