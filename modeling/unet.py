@@ -106,8 +106,7 @@ class UnetModel(nn.Module):
         down3 = self.down3(down2)
 
         thro = self.to_vec(down3)
-        temb = self.timestep_embedding(t)
-        temb = temb.view(*temb.shape, 1, 1) # FIX: broadcasting
+        temb = self.timestep_embedding(t)[:,:,None,None] # FIX: broadcasting
         thro = self.up0(thro + temb)
 
         up1 = self.up1(thro, down3) + temb
