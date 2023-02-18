@@ -13,3 +13,5 @@ stages:
     - modeling
     outs:
     - samples
+    params:
+    - train

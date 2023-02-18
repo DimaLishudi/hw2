@@ -19,14 +19,47 @@ stages:
       size: 356712185
       nfiles: 9
     - path: main.py
-      md5: e8db3f8078c6778dea39209de7e9ee1d
-      size: 2404
+      md5: 48f65dc763b3c2e189931144a73c0992
+      size: 2424
     - path: modeling
       md5: 46ab584d5d8a007af55073f682e386dd.dir
       size: 15794
       nfiles: 8
+    params:
+      params.yaml:
+        train:
+          dataloader:
+            params:
+              num_workers: 4
+              batch_size: 128
+              shuffle: true
+          logger:
+            enable_logging: true
+            project: EDL-HW2
+          model:
+            ddpm:
+              betas:
+              - 0.0001
+              - 0.02
+              num_timesteps: 1000
+            unet:
+              in_channels: 3
+              out_channels: 3
+              hidden_size: 128
+          training:
+            num_epochs: 1
+          optimizer:
+            _target_: torch.optim.Adam
+            lr: 1e-05
+            betas:
+            - 0.9
+            - 0.999
+          scheduler:
+            _target_: torch.optim.lr_scheduler.ConstantLR
+            factor: 1
+            total_iters: 0
     outs:
     - path: samples
-      md5: 1cb4bcb3e32486f63c4c26b4e4f0443c.dir
-      size: 5581
+      md5: cf59128acdf688676b857930a3a2832e.dir
+      size: 5259
       nfiles: 1

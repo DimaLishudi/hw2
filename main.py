@@ -18,6 +18,7 @@ from omegaconf import DictConfig
 # no bug fixes in main, only refactoring to handle hyperparameters via hydra
 @hydra.main(version_base=None, config_path=".", config_name="params.yaml")
 def main(cfg: DictConfig):
+    cfg = cfg.train
     device = "cuda" if torch.cuda.is_available() else "cpu"
     ddpm = DiffusionModel(
         eps_model=UnetModel(**cfg.model.unet),

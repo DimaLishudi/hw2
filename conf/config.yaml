@@ -1,7 +1,7 @@
 defaults:
-  - dataloader: base
-  - logger: wandb
-  - model: base
-  - training: base
-  - optimizer: adam
-  - scheduler: constant
+  - train/dataloader: base
+  - train/logger: wandb
+  - train/model: base
+  - train/training: base
+  - train/optimizer: adam
+  - train/scheduler: constant
