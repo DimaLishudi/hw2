@@ -1,0 +1,4 @@
+params:
+  num_workers: 4
+  batch_size: 128
+  shuffle: True

@@ -1,0 +1,4 @@
+_target_: torch.optim.lr_scheduler.OneCycleLR
+epochs: ${training.num_epochs}
+max_lr: ${optimizer.params.lr}
+steps_per_epoch: 50000 / ${data.dataloader_params.batch_size}

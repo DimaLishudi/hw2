@@ -17,7 +17,7 @@ def train_step(model: DiffusionModel, x: torch.Tensor, optimizer: Optimizer, dev
     return loss
 
 
-def train_epoch(model: DiffusionModel, dataloader: DataLoader, optimizer: Optimizer, device: str, enable_logging: bool=True):
+def train_epoch(model: DiffusionModel, dataloader: DataLoader, optimizer: Optimizer, scheduler, device: str, enable_logging: bool=True):
     model.train()
     pbar = tqdm(dataloader)
     loss_ema = None
@@ -26,7 +26,11 @@ def train_epoch(model: DiffusionModel, dataloader: DataLoader, optimizer: Optimi
         loss_ema = train_loss if loss_ema is None else 0.9 * loss_ema + 0.1 * train_loss
         pbar.set_description(f"loss: {loss_ema:.4f}")
         if enable_logging:
-            wandb.log({"train_loss" : train_loss}) # I do not log loss_ema, as wandb can calculate it anyways
+            wandb.log({
+                "train_loss" : train_loss,
+                "lr" : scheduler.get_last_lr()[0]
+            }) # I do not log loss_ema, as wandb can calculate it anyways
+        scheduler.step()
 
 
 def generate_samples(model: DiffusionModel, device: str, path: str, enable_logging: bool=True):

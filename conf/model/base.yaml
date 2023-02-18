@@ -1,0 +1,7 @@
+ddpm:
+  betas: [1e-4, 0.02]
+  num_timesteps: 1000
+unet:
+  in_channels: 3
+  out_channels: 3
+  hidden_size: 128

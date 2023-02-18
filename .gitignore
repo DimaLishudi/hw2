@@ -3,3 +3,7 @@ data/*
 samples/*
 *__pycache__*
 .vscode/*
+wandb/*
+outputs/*
+/cifar10
+/samples

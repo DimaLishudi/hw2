@@ -1,0 +1,10 @@
+defaults:
+  - base
+
+augmentations: 
+  RandomHorizontalFlip:
+    _target_: transforms.RandomHorizontalFlip
+    p: 0.5
+  RandomVerticalFlip:
+    _target_: transforms.RandomHorizontalFlip
+    p: 0.5

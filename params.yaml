@@ -1,0 +1,30 @@
+dataloader:
+  params:
+    num_workers: 4
+    batch_size: 128
+    shuffle: true
+logger:
+  enable_logging: true
+  project: EDL-HW2
+model:
+  ddpm:
+    betas:
+    - 0.0001
+    - 0.02
+    num_timesteps: 1000
+  unet:
+    in_channels: 3
+    out_channels: 3
+    hidden_size: 128
+training:
+  num_epochs: 1
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 1.0e-05
+  betas:
+  - 0.9
+  - 0.999
+scheduler:
+  _target_: torch.optim.lr_scheduler.ConstantLR
+  factor: 1
+  total_iters: 0
